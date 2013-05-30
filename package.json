@@ -1,0 +1,29 @@
+{
+    "name": "workout-mixer",
+    "version": "0.1.0",
+    "author": "Rick Osborne",
+    "description": "Generate workout mixes from your iTunes library.",
+    "bin": {
+        "workouts": "./workouts"
+    },
+    "main": "workouts.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rickosborne/workouts.js"
+    },
+    "keywords": [
+        "itunes",
+        "workout",
+        "music"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "components",
+        ".idea"
+    ],
+    "dependencies": {
+        "posix-getopt": "1.x"
+    },
+    "license": "MIT"
+}
