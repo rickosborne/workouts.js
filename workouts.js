@@ -1,10 +1,5 @@
-var util = require('util'),
-    getopt = require('posix-getopt')
-;
-
-util.debug('workouts.js');
-
-var tempDir = '__workout_temp__',
+var getopt = require('posix-getopt'),
+    tempDir = '__workout_temp__',
     outputTitle = 'workout',
     defaults = {
         library: (process.env['HOME'] || '~') + '/Music/iTunes/iTunes Music Library.xml',
@@ -65,6 +60,10 @@ var tempDir = '__workout_temp__',
             });
         });
         while ((option = argParser.getopt()) !== undefined) {
+            if ('error' in option) {
+                console.error('ERROR: Unknown argument: ', option.optopt || option.option);
+                process.exit(1);
+            }
             ret[nameFromOption[option.option]] = ('optarg' in option) ? option.optarg : true;
         }
         return ret;
@@ -87,10 +86,19 @@ var tempDir = '__workout_temp__',
             console.log('');
         });
         console.log(extraHelp);
-    }
+    },
+    debug = (function(verbose){
+        if (verbose) {
+            return console.log;
+        }
+        return function(){};
+    })(options.verbose)
 ;
 
 if (options.help) {
     showHelp(argNames);
     process.exit(0);
 }
+
+debug("workouts.js");
+
