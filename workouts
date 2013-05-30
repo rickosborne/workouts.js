@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# I am just a wrapper script for the lazy.
+
+node workouts.js "$@"
